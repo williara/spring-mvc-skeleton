@@ -9,17 +9,17 @@
 <body>
 <h1>Under Construction!!!</h1>
 <table>
-<tr><form:form modelAttribute="user" action="welcome.jsp">
+<tr><form:form modelAttribute="user" action="/welcome">
 	<td>
-		<label for="usernameInput">username: </label>
+		<form:label path="username">username: </form:label>
 		<form:input path="username" id="usernameInput" />
 	</td>
 	<td>
-		<label for="passwordInput">password:</label>
-		<form:input path="password" name = "passwordInput" />
+		<form:label path="password">password:</form:label>
+		<form:input path="password" id = "passwordInput" />
 	</td>
-	</form:form>
 	<td><input type="submit" value="Submit" /></td>
+	</form:form>
 </tr>
 	
 </table>
