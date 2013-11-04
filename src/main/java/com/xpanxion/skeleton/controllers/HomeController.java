@@ -24,13 +24,13 @@ public class HomeController {
     @RequestMapping(value = "home", method = RequestMethod.GET)
     public String makeLogin(@ModelAttribute UserEntity user, Model m) {
         m.addAttribute("user", new UserEntity());
+
         return "home";
     }
 
     @RequestMapping(value = "home", method = RequestMethod.POST)
     public String submitForm(@ModelAttribute UserEntity user, Model m) {
-        m.addAttribute("message", "successfully logged in");
-        return "home";
+        return "welcome";
     }
 
 }

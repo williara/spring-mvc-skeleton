@@ -9,15 +9,18 @@
 <body>
 <h1>Under Construction!!!</h1>
 <table>
-<tr><td><form:form modelAttribute="user">
-	<label for="usernameInput">username: </label>
-	<form:input path="username" id="usernameInput" /></td>
+<tr><form:form modelAttribute="user" action="welcome.jsp">
 	<td>
-	<label for="passwordInput">password:</label>
-	<form:input path="password" name = "passwordInput" /></td>
+		<label for="usernameInput">username: </label>
+		<form:input path="username" id="usernameInput" />
+	</td>
+	<td>
+		<label for="passwordInput">password:</label>
+		<form:input path="password" name = "passwordInput" />
+	</td>
 	</form:form>
 	<td><input type="submit" value="Submit" /></td>
-	<td><c:if test="${not empty message}"><div class="message green">${message}}</div></c:if></td> </tr>
+</tr>
 	
 </table>
 </body>
