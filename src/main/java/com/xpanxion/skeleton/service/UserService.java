@@ -7,5 +7,11 @@ import com.xpanxion.skeleton.dto.entity.UserEntity;
 
 public interface UserService {
 
-    List<UserBean> getUserBeans(UserEntity ent);
+    List<UserBean> getUserBeans();
+
+    UserBean returnUserFromUserName(String username);
+
+    void setLastLoginFor(UserBean user);
+
+    UserBean verifyUserCredentials(UserEntity ent);
 }

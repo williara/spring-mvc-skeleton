@@ -20,19 +20,33 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public List<UserBean> getUserBeans(UserEntity ent) {
+    public List<UserBean> getUserBeans() {
 
-        List<UserEntity> users = this.userDao.verifyUser(ent.getUsername(), ent.getPassword());
+        List<UserEntity> users = this.userDao.getAllUsers();
         List<UserBean> output = new ArrayList<UserBean>();
         for (UserEntity user : users) {
-            UserBean bean = new UserBean();
-            BeanUtils.copyProperties(user, bean);
-            bean.setUsername(user.getUsername());
-            bean.setPassword(user.getPassword());
-            output.add(bean);
+            output.add(this.userToBean(user));
         }
         return output;
 
+    }
+
+    @Override
+    public UserBean returnUserFromUserName(String username) {
+        try {
+            return this.userToBean(this.userDao.getUserByUserName(username));
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public void setLastLoginFor(UserBean user) {
+        UserEntity ent = new UserEntity();
+        ent.setLastLogin(user.getLastLogin());
+        ent.setUsername(user.getUsername());
+        ent.setPassword(user.getPassword());
+        this.userDao.setLastLoginFor(ent);
     }
 
     @Resource
@@ -40,4 +54,22 @@ public class UserServiceImpl implements UserService {
         this.userDao = dao;
     }
 
+    public UserBean userToBean(UserEntity ent) {
+        UserBean bean = new UserBean();
+        BeanUtils.copyProperties(ent, bean);
+        bean.setUsername(ent.getUsername());
+        bean.setPassword(ent.getPassword());
+        bean.setID(ent.getID());
+        return bean;
+    }
+
+    @Override
+    public UserBean verifyUserCredentials(UserEntity ent) {
+        try {
+            return this.userToBean(this.userDao.getUserByCredentials(ent));
+        } catch (IndexOutOfBoundsException e) {
+            // user credentials weren't found
+            return null;
+        }
+    }
 }

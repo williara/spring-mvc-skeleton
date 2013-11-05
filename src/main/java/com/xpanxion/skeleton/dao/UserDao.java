@@ -8,5 +8,9 @@ public interface UserDao {
 
     public List<UserEntity> getAllUsers();
 
-    public List<UserEntity> verifyUser(String username, String password);
+    public UserEntity getUserByCredentials(UserEntity ent) throws IndexOutOfBoundsException;
+
+    public UserEntity getUserByUserName(String username);
+
+    public void setLastLoginFor(UserEntity ent);
 }

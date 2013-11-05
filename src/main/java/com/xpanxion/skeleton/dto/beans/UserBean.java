@@ -1,10 +1,13 @@
 package com.xpanxion.skeleton.dto.beans;
 
+import org.joda.time.DateTime;
+
 public class UserBean {
 
     private long id;
     private String username;
     private String password;
+    private DateTime lastLogin;
 
     /**
      * 
@@ -12,6 +15,14 @@ public class UserBean {
      */
     public long getId() {
         return this.id;
+    }
+
+    /**
+     * 
+     * @return a user's last login
+     */
+    public DateTime getLastLogin() {
+        return this.lastLogin;
     }
 
     /**
@@ -37,6 +48,15 @@ public class UserBean {
      */
     public void setID(long id) {
         this.id = id;
+    }
+
+    /**
+     * 
+     * @param lastLogin
+     *            value to set user's last login to
+     */
+    public void setLastLogin(DateTime lastLogin) {
+        this.lastLogin = lastLogin;
     }
 
     /**

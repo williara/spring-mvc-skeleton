@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome!</title>
+<title>Welcome! ${user.username}</title>
 </head>
+
 <body>
-<h1>Success!</h1>
+<h1>Success! ${user.username} ${sincelastlogon }</h1>
 </body>
 </html>

@@ -9,17 +9,22 @@
 <body>
 <h1>Under Construction!!!</h1>
 <table>
-<tr><form:form modelAttribute="user" action="/welcome">
+<tr><form:form modelAttribute="user" action="/home">
 	<td>
 		<form:label path="username">username: </form:label>
 		<form:input path="username" id="usernameInput" />
 	</td>
 	<td>
 		<form:label path="password">password:</form:label>
-		<form:input path="password" id = "passwordInput" />
+		<form:password path="password" id = "passwordInput" />
 	</td>
 	<td><input type="submit" value="Submit" /></td>
 	</form:form>
+</tr>
+<tr>
+	<td>
+		<c:if test="${not empty message}"><div class="message green">${message}</div></c:if>
+	</td>
 </tr>
 	
 </table>

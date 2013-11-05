@@ -11,6 +11,7 @@
 			</column>
 			<column name="username" type="text"/>
 			<column name="password" type="text"/>
+			<column name="lastlogin" type="timestamp"/>
 		</createTable>
 		<insert tableName="users">
 			<column name="username" value="user1"/>
