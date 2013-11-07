@@ -6,8 +6,6 @@ package com.xpanxion.skeleton.controllers;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,8 +27,6 @@ import com.xpanxion.skeleton.service.UserService;
 public class HomeController {
 
     private UserService userService;
-
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @ModelAttribute("user")
     public UserEntity createUser() {
