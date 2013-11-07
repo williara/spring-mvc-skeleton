@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.xpanxion.skeleton.dto.entity.UserEntity;
@@ -34,6 +33,7 @@ public class UserDaoImpl implements UserDao {
 
         List<UserEntity> lst = q.list();
         this.listHasOneValue(lst);
+
         return lst.get(0);
 
     }
@@ -41,9 +41,10 @@ public class UserDaoImpl implements UserDao {
     @SuppressWarnings("unchecked")
     @Override
     public UserEntity getUserByUserName(String username) throws IndexOutOfBoundsException {
-        Query q = this.sessionFactory.openSession().getNamedQuery("users.userVerification");
+        Query q = this.sessionFactory.openSession().getNamedQuery("users.getByUsername");
 
         q.setParameter("username", username);
+
         List<UserEntity> lst = q.list();
         this.listHasOneValue(lst);
 
@@ -59,11 +60,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void setLastLoginFor(UserEntity ent) {
         Session s = this.sessionFactory.openSession();
-        Transaction tx = s.beginTransaction();
-        tx.begin();
-        s.update(ent);
-        tx.commit();
-        s.close();
+        Query q = s.getNamedQuery("users.updateLoginTime");
+
+        q.setParameter("username", ent.getUsername());
+        q.setParameter("lastLogin", ent.getLastLogin());
+
+        q.executeUpdate();
     }
 
     @Resource

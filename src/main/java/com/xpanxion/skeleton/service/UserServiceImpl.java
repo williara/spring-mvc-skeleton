@@ -19,6 +19,9 @@ public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
 
+    /**
+     * @return all users
+     */
     @Override
     public List<UserBean> getUserBeans() {
 
@@ -31,17 +34,12 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * @param User
+     *            to set last logon timestamp
+     */
     @Override
-    public UserBean returnUserFromUserName(String username) {
-        try {
-            return this.userToBean(this.userDao.getUserByUserName(username));
-        } catch (IndexOutOfBoundsException e) {
-            return null;
-        }
-    }
-
-    @Override
-    public void setLastLoginFor(UserBean user) {
+    public void setLastLoginTime(UserBean user) {
         UserEntity ent = new UserEntity();
         ent.setLastLogin(user.getLastLogin());
         ent.setUsername(user.getUsername());
@@ -54,6 +52,12 @@ public class UserServiceImpl implements UserService {
         this.userDao = dao;
     }
 
+    /**
+     * 
+     * @param ent
+     *            UserEntity to convert to UserBean
+     * @return UserBean returned
+     */
     public UserBean userToBean(UserEntity ent) {
         UserBean bean = new UserBean();
         BeanUtils.copyProperties(ent, bean);
@@ -63,12 +67,30 @@ public class UserServiceImpl implements UserService {
         return bean;
     }
 
+    /**
+     * @param ent
+     *            user to verify
+     */
     @Override
     public UserBean verifyUserCredentials(UserEntity ent) {
         try {
             return this.userToBean(this.userDao.getUserByCredentials(ent));
         } catch (IndexOutOfBoundsException e) {
             // user credentials weren't found
+            return null;
+        }
+    }
+
+    /**
+     * @param username
+     *            username to verify exists
+     * @return user that was found
+     */
+    @Override
+    public UserBean verifyUsernameExists(String username) {
+        try {
+            return this.userToBean(this.userDao.getUserByUserName(username));
+        } catch (IndexOutOfBoundsException e) {
             return null;
         }
     }

@@ -8,13 +8,15 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 @Entity
 @Table(name = "users")
 @NamedQueries({ @NamedQuery(name = "users.userVerification", query = "from UserEntity users where users.username=:username and users.password=:password"),
         @NamedQuery(name = "users.getAllUsers", query = "from UserEntity"),
-        @NamedQuery(name = "users.getByUsername", query = "from UserEntity users where users.username=:username") })
+        @NamedQuery(name = "users.getByUsername", query = "from UserEntity users where users.username=:username"),
+        @NamedQuery(name = "users.updateLoginTime", query = "Update UserEntity users set lastLogin = :lastLogin  where users.username=:username") })
 public class UserEntity {
 
     // RW: should I even worry about including id here?
@@ -26,6 +28,13 @@ public class UserEntity {
     public UserEntity() {
     }
 
+    /**
+     * 
+     * @param username
+     *            set a user's username
+     * @param password
+     *            set a user's password
+     */
     public UserEntity(String username, String password) {
         this.setUsername(username);
         this.setPassword(password);
@@ -46,6 +55,7 @@ public class UserEntity {
      * @return user's last login date/time
      */
     @Column
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     public DateTime getLastLogin() {
         return this.lastLogin;
     }

@@ -42,17 +42,19 @@ public class HomeController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = "home", method = RequestMethod.GET)
     public ModelAndView showLogin() {
         return new ModelAndView("home", "command", new UserEntity());
     }
 
-    @RequestMapping(value = "/home", method = RequestMethod.POST)
+    @RequestMapping(value = "home", method = RequestMethod.POST)
     public String submitForm(@ModelAttribute("user") UserEntity user, HttpServletRequest req, Model m) {
         UserBean ent = this.userService.verifyUserCredentials(user);
+
+        // verify if the user is valid, then route them to appropriate page
         if (ent != null) {
             req.getSession(true).setAttribute("user", ent.getUsername());
-            return "welcome";
+            return "forward:/welcome";
         } else {
             m.addAttribute("message", "Username and/or password is incorrect. Please re-enter credentials and try again.");
             return "home";

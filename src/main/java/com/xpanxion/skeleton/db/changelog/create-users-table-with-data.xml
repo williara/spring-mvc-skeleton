@@ -11,15 +11,17 @@
 			</column>
 			<column name="username" type="text"/>
 			<column name="password" type="text"/>
-			<column name="lastlogin" type="timestamp"/>
+			<column name="lastlogin" type="timestamp without time zone"/>
 		</createTable>
 		<insert tableName="users">
 			<column name="username" value="user1"/>
 			<column name="password" value="password1"/>
+			<column name="lastlogin" value="2013-11-05 00:00:00.000000" />
 		</insert>
 		<insert tableName="users">
 			<column name="username" value="user2"/>
 			<column name="password" value="password2"/>
+			<column name="lastlogin" value="2013-11-02 00:00:00.000000" />
 		</insert>
 	</changeSet>                    
 </databaseChangeLog>

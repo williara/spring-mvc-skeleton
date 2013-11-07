@@ -9,9 +9,9 @@ public interface UserService {
 
     List<UserBean> getUserBeans();
 
-    UserBean returnUserFromUserName(String username);
-
-    void setLastLoginFor(UserBean user);
+    void setLastLoginTime(UserBean user);
 
     UserBean verifyUserCredentials(UserEntity ent);
+
+    UserBean verifyUsernameExists(String username);
 }
