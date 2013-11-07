@@ -7,7 +7,18 @@ public class UserBean {
     private long id;
     private String username;
     private String password;
+    private String firstName;
+    private String lastName;
+
     private DateTime lastLogin;
+
+    /**
+     * 
+     * @return user's first name
+     */
+    public String getFirstName() {
+        return this.firstName;
+    }
 
     /**
      * 
@@ -23,6 +34,14 @@ public class UserBean {
      */
     public DateTime getLastLogin() {
         return this.lastLogin;
+    }
+
+    /**
+     * 
+     * @return user's last name
+     */
+    public String getLastName() {
+        return this.lastName;
     }
 
     /**
@@ -43,6 +62,15 @@ public class UserBean {
 
     /**
      * 
+     * @param firstName
+     *            user's first name
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * 
      * @param id
      *            value to set a user's ID to
      */
@@ -57,6 +85,15 @@ public class UserBean {
      */
     public void setLastLogin(DateTime lastLogin) {
         this.lastLogin = lastLogin;
+    }
+
+    /**
+     * 
+     * @param lastName
+     *            user's last name
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     /**

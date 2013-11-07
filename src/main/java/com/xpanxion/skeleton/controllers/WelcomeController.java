@@ -25,7 +25,7 @@ public class WelcomeController {
 
     @RequestMapping(value = "welcome")
     public ModelAndView welcomePageRequest(HttpServletRequest req) {
-        UserBean user = this.userService.returnUserFromUserName((String) req.getSession().getAttribute("user"));
+        UserBean user = this.userService.verifyUsernameExists((String) req.getSession().getAttribute("user"));
         ModelAndView mAndV = new ModelAndView("welcome");
         Days d;
 

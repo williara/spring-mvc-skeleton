@@ -8,6 +8,6 @@
 </head>
 
 <body>
-<h1>Welcome, ${user.username}! It Has been ${sincelastlogon.days} days since you've last logged in!</h1>
+<h1>Hello, ${user.firstName} ${user.lastName} It Has been ${sincelastlogon.days} days since you've last logged in!</h1>
 </body>
 </html>

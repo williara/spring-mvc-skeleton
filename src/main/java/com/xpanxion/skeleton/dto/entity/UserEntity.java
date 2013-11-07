@@ -24,6 +24,8 @@ public class UserEntity {
     private String username;
     private String password;
     private DateTime lastLogin;
+    private String firstName;
+    private String lastName;
 
     public UserEntity() {
     }
@@ -38,6 +40,32 @@ public class UserEntity {
     public UserEntity(String username, String password) {
         this.setUsername(username);
         this.setPassword(password);
+    }
+
+    /**
+     * 
+     * @param username
+     * @param password
+     * @param firstName
+     * @param lastName
+     * @param Password
+     * @param lastLogin
+     */
+    public UserEntity(String username, String password, String firstName, String lastName, DateTime lastLogin) {
+        this.setUsername(username);
+        this.setPassword(password);
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setLastLogin(lastLogin);
+    }
+
+    /**
+     * 
+     * @return user's first name
+     */
+    @Column
+    public String getFirstName() {
+        return this.firstName;
     }
 
     /**
@@ -62,6 +90,15 @@ public class UserEntity {
 
     /**
      * 
+     * @return user's last name
+     */
+    @Column
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    /**
+     * 
      * @return user's Password
      */
     @Column
@@ -80,6 +117,15 @@ public class UserEntity {
 
     /**
      * 
+     * @param firstName
+     *            user's first name
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * 
      * @param id
      *            set user's id to
      */
@@ -94,6 +140,15 @@ public class UserEntity {
      */
     public void setLastLogin(DateTime lastLogin) {
         this.lastLogin = lastLogin;
+    }
+
+    /**
+     * 
+     * @param lastName
+     *            user's last name
+     **/
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     /**

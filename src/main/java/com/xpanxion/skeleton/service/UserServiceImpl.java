@@ -19,6 +19,10 @@ public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
 
+    public UserEntity beanToUser(UserBean bean) {
+        return new UserEntity(bean.getUsername(), bean.getPassword(), bean.getFirstName(), bean.getLastName(), bean.getLastLogin());
+    }
+
     /**
      * @return all users
      */
@@ -41,9 +45,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void setLastLoginTime(UserBean user) {
         UserEntity ent = new UserEntity();
-        ent.setLastLogin(user.getLastLogin());
-        ent.setUsername(user.getUsername());
-        ent.setPassword(user.getPassword());
+
         this.userDao.setLastLoginFor(ent);
     }
 
@@ -63,6 +65,8 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(ent, bean);
         bean.setUsername(ent.getUsername());
         bean.setPassword(ent.getPassword());
+        bean.setFirstName(ent.getFirstName());
+        bean.setLastName(ent.getLastName());
         bean.setID(ent.getID());
         return bean;
     }
